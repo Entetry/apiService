@@ -1,8 +1,14 @@
+// Package main
 package main
 
 import (
 	"context"
 	"fmt"
+	"net"
+	"os"
+	"os/signal"
+	"syscall"
+
 	"github.com/Entetry/apiService/internal/config"
 	"github.com/Entetry/apiService/internal/handler"
 	"github.com/Entetry/apiService/internal/middleware"
@@ -13,10 +19,6 @@ import (
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	"net"
-	"os"
-	"os/signal"
-	"syscall"
 )
 
 func main() {
@@ -80,7 +82,8 @@ func main() {
 	signal.Notify(sigChan, syscall.SIGTERM)
 	err = e.Start(fmt.Sprintf(":%d", cfg.Port))
 	if err != nil {
-		log.Fatal(err)
+		log.Error(err)
+		return
 	}
 	log.Info("Server started on ", cfg.Port)
 	go func() {
@@ -93,10 +96,12 @@ func main() {
 	}()
 	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", cfg.Port))
 	if err != nil {
-		log.Fatal(err)
+		log.Error(err)
+		return
 	}
 	err = e.Server.Serve(listener)
 	if err != nil {
-		log.Fatal(err)
+		log.Error(err)
+		return
 	}
 }

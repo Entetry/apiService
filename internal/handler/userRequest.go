@@ -18,8 +18,3 @@ type createRequest struct {
 type createResponse struct {
 	ID string `json:"id" validate:"required,gte=3,lte=130"`
 }
-
-// deleteRequest godoc
-type deleteRequest struct {
-	ID string `json:"id" validate:"required,gte=3,lte=130"`
-}

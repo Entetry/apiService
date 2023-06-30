@@ -2,8 +2,9 @@
 package handler
 
 import (
-	"github.com/Entetry/authService/protocol/authService"
 	"net/http"
+
+	"github.com/Entetry/authService/protocol/authService"
 
 	"github.com/labstack/echo/v4"
 	log "github.com/sirupsen/logrus"

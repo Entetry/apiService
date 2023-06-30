@@ -1,9 +1,10 @@
 package middleware
 
 import (
+	"net/http"
+
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
-	"net/http"
 )
 
 // CustomValidator validates a structs exposed fields, and automatically validates nested structs
@@ -12,9 +13,9 @@ type CustomValidator struct {
 }
 
 // NewCustomValidator godoc
-func NewCustomValidator(validator *validator.Validate) *CustomValidator {
+func NewCustomValidator(v *validator.Validate) *CustomValidator {
 	return &CustomValidator{
-		Validator: validator,
+		Validator: v,
 	}
 }
 

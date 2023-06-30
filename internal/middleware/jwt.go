@@ -2,10 +2,11 @@
 package middleware
 
 import (
-	"github.com/Entetry/authService/protocol/authService"
-	"github.com/labstack/echo/v4"
 	"net/http"
 	"strings"
+
+	"github.com/Entetry/authService/protocol/authService"
+	"github.com/labstack/echo/v4"
 )
 
 // Jwt middleware auth struct
